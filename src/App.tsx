@@ -1,34 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+// src/App.tsx
 import './App.css'
+import WhiteboardCanvas from '@components/WhiteboardCanvas.tsx'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="bg-white flex flex-col h-screen overflow-hidden">
+      <header className="toolbar bg-primary text-white p-4 shadow-lg text-center h-24">
+        <h1 className="text-2xl font-bold">在线协作白板</h1>
+      </header>
+
+      <main className="flex flex-1">
+        <aside className="sidebar bg-gray-50 p-4 w-64  box-border">
+          <p className="font-semibold mb-4 text-black">图形工具</p>
+
+          {/* 侧边栏也可以添加一些 DaisyUI 风格的按钮 */}
+          <div className="space-y-2 ">
+            <button className="btn btn-neutral btn-sm w-full justify-start ">
+              📐 矩形
+            </button>
+            <button className="btn btn-neutral btn-sm w-full justify-start">
+              ⭕️ 圆形
+            </button>
+            <button className="btn btn-neutral btn-sm w-full justify-start">
+              ✏️ 画笔
+            </button>
+          </div>
+        </aside>
+
+        <section className="canvas-container flex-1">
+          <WhiteboardCanvas />
+        </section>
+      </main>
+    </div>
   )
 }
 
